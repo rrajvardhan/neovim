@@ -102,6 +102,7 @@ return {
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
       local servers = {
+        gopls = {},
         black = {},
         clangd = {
           cmd = {
@@ -120,7 +121,9 @@ return {
           },
         },
         marksman = {},
-        prettier = {}, -- Formatter for JS/HTML/CSS
+        prettier = {
+          args = { '--tab-width', '2' },
+        }, -- Formatter for JS/HTML/CSS
         stylua = {}, -- Formatter for Lua
         tailwindcss = {
           filetypes = { 'html', 'vue', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
@@ -152,6 +155,8 @@ return {
           end,
         },
       }
+
     end,
+
   },
 }

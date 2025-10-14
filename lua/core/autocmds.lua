@@ -13,11 +13,6 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   end,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'rust',
-  command = 'setlocal nolist noexpandtab shiftwidth=2 tabstop=2',
-})
-
 -- Enable arrow keys in Neotree
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'neo-tree',
@@ -52,5 +47,37 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   pattern = 'yugen',
   callback = function()
     vim.cmd 'highlight WhichKeyBorder guibg=#000000'
+  end,
+})
+
+vim.api.nvim_create_autocmd('RecordingEnter', {
+  callback = function()
+    vim.cmd 'redrawstatus'
+  end,
+})
+vim.api.nvim_create_autocmd('RecordingLeave', {
+  callback = function()
+    vim.defer_fn(function()
+      vim.cmd 'redrawstatus'
+    end, 50)
+  end,
+})
+
+vim.api.nvim_create_autocmd({ 'BufEnter', 'TextChanged', 'TextChangedI' }, {
+  pattern = '*',
+  callback = function()
+    if vim.bo.modified then
+      vim.opt.list = true
+      vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+    else
+      vim.opt.list = false
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*',
+  callback = function()
+    vim.opt.list = false
   end,
 })

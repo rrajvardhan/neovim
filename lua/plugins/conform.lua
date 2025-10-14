@@ -56,6 +56,12 @@ return {
           args = { '-w' }, -- Remove `-w`, let Conform.nvim handle file writing
           stdin = false, -- Ensure it operates on a file instead of stdin
         },
+
+        gofumpt = {
+          command = 'gofumpt',
+          args = {},
+          stdin = true,
+        },
       },
 
       formatters_by_ft = {
@@ -72,6 +78,7 @@ return {
         json = { 'prettier' },
         python = { 'black' },
         asm = { 'asmfmt' },
+        go = { 'gofumpt' },
       },
     },
   },

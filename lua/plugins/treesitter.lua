@@ -6,6 +6,7 @@ return {
 
     opts = {
       ensure_installed = {
+        'svelte',
         'bash',
         'c',
         'cpp',
@@ -20,10 +21,11 @@ return {
         'vimdoc',
         'javascript',
         'tsx',
+        'go',
       },
       highlight = {
         enable = true,
-        disable = { 'html', 'markdown', 'nasm' },
+        disable = { 'markdown', 'nasm', 'html' },
         additional_vim_regex_highlighting = { 'ruby' },
       },
       indent = { enable = true, disable = { 'ruby' } },

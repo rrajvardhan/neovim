@@ -1,9 +1,10 @@
 return {
   {
-    'bettervim/yugen.nvim',
-    config = function() end,
+    '0xstepit/flow.nvim',
+    lazy = false,
+    priority = 1000,
+    opts = {},
   },
-
   {
     'baliestri/aura-theme',
     lazy = false,

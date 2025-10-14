@@ -68,7 +68,15 @@ return {
           always_divide_middle = false,
         },
         sections = {
-          lualine_a = { 'mode' },
+          lualine_a = {
+            'mode',
+            {
+              function()
+                local reg = vim.fn.reg_recording()
+                return reg ~= '' and 'REC @' .. reg or ''
+              end,
+            },
+          },
           lualine_b = {
             'branch',
             'diff',
